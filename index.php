@@ -3,6 +3,7 @@
   include_once('models/networkManager.php');
   include_once('models/learningConfigManager.php');
   header('Access-Control-Allow-Origin: *');
+  header('Access-Control-Allow-Headers: *');
   header('Content-Type: application/json');
 
   $operation = $_GET["operation"] ?? "";
@@ -35,7 +36,7 @@
             $tauxApprentissage = $_POST["tauxApprentissage"] ?? "";
             $typeReseau = $_POST["typeReseau"] ?? "";
             $fonctionTransfert = $_POST["fonctionTransfert"] ?? "";
-            $newNetwork = new Project($idNetwork,$label,$neuronsParCouches,$tauxApprentissage,$fonctionTransfert, $typeReseau);
+            $newNetwork = new Network($idNetwork, $label, $typeReseau, $tauxApprentissage, $fonctionTransfert, $neuronsParCouches);
             echo json_encode($networkManager->updateNetwork($idNetwork, $newNetwork));
         }
         if ($type == "learning_config"){
@@ -57,7 +58,6 @@
             $fonctionTransfert = $_POST["fonctionTransfert"] ?? "";
             $typeReseau = $_POST["typeReseau"] ?? "";
             $newNetwork = new Network($idNetwork,$label,$neuronsParCouches,$tauxApprentissage,$fonctionTransfert,$typeReseau);
-            $projetManager = new ProjectManager();
             echo json_encode($networkManager->createNetwork($newNetwork));
         }
     }
