@@ -8,6 +8,7 @@
 
   $operation = $_GET["operation"] ?? "";
   $type = $_GET["type"] ?? "";
+  $data = json_decode(file_get_contents("php://input"));
 
   $networkManager = new NetworkManager();
   $learningConfigManager = new LearningConfigManager();
@@ -30,34 +31,34 @@
   }
     if ($operation == "update"){
         if ($type == "network"){
-            $idNetwork = $_POST["idNetwork"] ?? "";
-            $label = $_POST["label"] ?? "";
-            $neuronsParCouches = $_POST["neuronsParCouches"] ?? "";
-            $tauxApprentissage = $_POST["tauxApprentissage"] ?? "";
-            $typeReseau = $_POST["typeReseau"] ?? "";
-            $fonctionTransfert = $_POST["fonctionTransfert"] ?? "";
+            $idNetwork = $data->idNetwork ?? "";
+            $label = $data->label ?? "";
+            $neuronsParCouches = $data->neuronsParCouches ?? "";
+            $tauxApprentissage = $data->tauxApprentissage ?? "";
+            $typeReseau = $data->typeReseau ?? "";
+            $fonctionTransfert = $data->fonctionTransfert ?? "";
             $newNetwork = new Network($idNetwork, $label, $typeReseau, $tauxApprentissage, $fonctionTransfert, $neuronsParCouches);
             echo json_encode($networkManager->updateNetwork($idNetwork, $newNetwork));
         }
         if ($type == "learning_config"){
-            $id = $_POST["id"] ?? "";
-            $baseItem = $_POST["baseItem"] ?? "";
-            $learningRate = $_POST["learningRate"] ?? "";
-            $learningAverage = $_POST["learningAverage"] ?? "";
-            $ecartMoy = $_POST["ecartMoy"] ?? "";
+            $id = $data->id ?? "";
+            $baseItem = $data->baseItem ?? "";
+            $learningRate = $data->learningRate ?? "";
+            $learningAverage = $data->learningAverage ?? "";
+            $ecartMoy = $data->ecartMoy ?? "";
             $newLearningConfig = new LearningConfig($id, $baseItem, $learningRate, $learningAverage, $ecartMoy);
             echo json_encode($learningConfigManager->updateLearnginConfig($id, $newLearningConfig));
         }
     }
     if ($operation == "create"){
         if ($type == "network"){
-            $idNetwork = $_POST["idNetwork"] ?? "";
-            $label = $_POST["label"] ?? "";
-            $neuronsParCouches = $_POST["neuronsParCouches"] ?? "";
-            $tauxApprentissage = $_POST["tauxApprentissage"] ?? "";
-            $fonctionTransfert = $_POST["fonctionTransfert"] ?? "";
-            $typeReseau = $_POST["typeReseau"] ?? "";
-            $newNetwork = new Network($idNetwork,$label,$neuronsParCouches,$tauxApprentissage,$fonctionTransfert,$typeReseau);
+            $idNetwork = $data->idNetwork ?? "";
+            $label = $data->label ?? "";
+            $neuronsParCouches = $data->neuronsParCouches ?? "";
+            $tauxApprentissage = $data->tauxApprentissage ?? "";
+            $fonctionTransfert = $data->fonctionTransfert ?? "";
+            $typeReseau = $data->typeReseau ?? "";
+            $newNetwork = new Network($idNetwork, $label, $typeReseau, $tauxApprentissage, $fonctionTransfert, $neuronsParCouches);
             echo json_encode($networkManager->createNetwork($newNetwork));
         }
     }

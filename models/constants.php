@@ -14,10 +14,10 @@ class Constants {
     public static $ERROR_CODE = "ERROR";
 
     //SQL NETWORK
-    public static $SQL_SELECT_NETWORKS = "select * from network";
+    public static $SQL_SELECT_NETWORKS = "select * from network order by id";
     public static $SQL_SELECT_NETWORK = "select * from network where id = :idNetwork";
     public static $SQL_UPDATE_NETWORK = "update network set label = :label , neuronsParCouches = :neuronsParCouches , tauxApprentissage = :tauxApprentissage, fonctionTransfert = :fonctionTransfert, typeReseau = :typeReseau where id = :idNetwork";
-    public static $SQL_CREATE_NETWORK = "insert into network (label, neuronParCouches, tauxApprentissage, fonctionTransfert, typeReseau) values (:label, :neuronParCouches, :tauxApprentissage, :fonctionTransfert, :typeReseau)";
+    public static $SQL_CREATE_NETWORK = "insert into network (label, neuronsParCouches, tauxApprentissage, fonctionTransfert, typeReseau) values (:label, :neuronsParCouches, :tauxApprentissage, :fonctionTransfert, :typeReseau)";
     public static $SQL_DELETE_NETWORK = "delete from network where id = :idNetwork";
 
     //SQL LEARNING CONFIG
