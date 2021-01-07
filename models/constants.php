@@ -24,6 +24,13 @@ class Constants {
     public static $SQL_SELECT_LEARNING_CONFIG = "select *  from learningconfig";
     public static $SQL_UPDATE_LEARNING_CONFIG = "update from learningconfig set baseItem = :baseItem, learningRate = :learningRate, learningAverage = :learningAverage, ecartMoy = :ecartMoy where id = :id";
 
+    //SQL LEARNING BASE ITEMS
+    public $SQL_SELECT_NETWORK_LEARNING_BASE_ITEMS = "select * from baseentrainement where idNetwork = :idNetwork";
+    public $SQL_SELECT_NETWORK_LEARNING_BASE_ITEM = "select * from baseentrainement where idNetwork = :idNetwork and id = :idItem";
+    public $SQL_UPDATE_NETWORK_LEARNING_BASE_ITEM = "update baseentrainement set input = :input, output = :output where idNetwork = :idNetwork and id = :idItem";
+    public $SQL_CREATE_NETWORK_LEARNING_BASE_ITEM = "insert into baseentrainement (input, output, idNetwork) values (:input, :output, :idNetwork)";
+    public $SQL_DELETE_NETWORK_LEARNING_BASE_ITEM = "delete from baseentrainement where idNetwork = :idNetwork and id = :idItem";
+
     //SQL STATISTIQUE
     public static $SQL_STATE_BY_USERS = "select u.fullname, t.etat, count(*) as tache from tache t, users u where t.idUser = u.id group by t.idUser, t.etat order by u.fullname";
     public static $SQL_TASKS_BY_PROJECT = "select p.libelle as projet, count(*) as tache from tache t, projet p where t.idProjet = p.id group by idProjet";

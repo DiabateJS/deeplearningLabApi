@@ -2,6 +2,7 @@
   include_once('models/config.php');
   include_once('models/networkManager.php');
   include_once('models/learningConfigManager.php');
+  include_once('models/learningbaseManager.php');
   header('Access-Control-Allow-Origin: *');
   header('Access-Control-Allow-Headers: *');
   header('Content-Type: application/json');
@@ -12,6 +13,7 @@
 
   $networkManager = new NetworkManager();
   $learningConfigManager = new LearningConfigManager();
+  $learningBaseManager = new LearningBaseManager();
 
   if ($operation == "enum"){
       if ($type == "networks"){
@@ -23,6 +25,10 @@
       }
       if ($type == "learning_config"){
           echo json_encode($learningConfigManager->getLearningConfig());
+      }
+      if ($type == "learning_base"){
+          $idNetwork = $_GET["idNetwork"] ?? "";
+          echo json_encode($learningBaseManager->getAllNetworkLearningBaseItems($idNetwork));
       }
   }
   if ($operation == "auth"){
@@ -49,6 +55,14 @@
             $newLearningConfig = new LearningConfig($id, $baseItem, $learningRate, $learningAverage, $ecartMoy);
             echo json_encode($learningConfigManager->updateLearnginConfig($id, $newLearningConfig));
         }
+        if ($type == "learning_base"){
+            $id = $data->id ?? "";
+            $input = $data->input ?? "";
+            $output = $data->output ?? "";
+            $idNetwork = $data->idNetwork ?? "";
+            $newLearningBase = new LearningBase($id, $input, $output, $idNetwork);
+            echo json_encode($learningBaseManager->updateLearningBaseItem($idNetwork, $id, $newLearningBase));
+        }
     }
     if ($operation == "create"){
         if ($type == "network"){
@@ -61,11 +75,23 @@
             $newNetwork = new Network($idNetwork, $label, $typeReseau, $tauxApprentissage, $fonctionTransfert, $neuronsParCouches);
             echo json_encode($networkManager->createNetwork($newNetwork));
         }
+        if ($type == "learning_base"){
+            $id = $data->input ?? "";
+            $input = $data->input ?? "";
+            $output = $data->output ?? "";
+            $idNetwork = $data->idNetwork ?? "";
+            $newItem = new LearningBase($id, $input, $output, $idNetwork);
+            echo json_encode($learningBaseManager->createNetworkLearningBaseItem($newItem));
+        }
     }
     if ($operation == "delete"){
         if ($type == "network"){
             $id = $_GET["id"] ?? "";
             echo json_encode($networkManager->deleteNetwork($id));
+        }
+        if ($type == "learning_base"){
+            $id = $_GET["id"] ?? "";
+            echo json_encode($learningBaseManager->deleteNetworkLearningBaseItem($id));
         }
     }
 
