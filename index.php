@@ -26,9 +26,14 @@
       if ($type == "learning_config"){
           echo json_encode($learningConfigManager->getLearningConfig());
       }
-      if ($type == "learning_base"){
+      if ($type == "learning_base_items"){
           $idNetwork = $_GET["idNetwork"] ?? "";
           echo json_encode($learningBaseManager->getAllNetworkLearningBaseItems($idNetwork));
+      }
+      if ($type == "learning_base_item"){
+          $idNetwork = $_GET["idNetwork"] ?? "";
+          $idItem = $_GET["id"] ?? "";
+          echo json_encode($learningBaseManager->getNetworkLearningBaseItem($idNetwork, $idItem));
       }
   }
   if ($operation == "auth"){
@@ -61,7 +66,7 @@
             $output = $data->output ?? "";
             $idNetwork = $data->idNetwork ?? "";
             $newLearningBase = new LearningBase($id, $input, $output, $idNetwork);
-            echo json_encode($learningBaseManager->updateLearningBaseItem($idNetwork, $id, $newLearningBase));
+            echo json_encode($learningBaseManager->updateLearningBaseItem($newLearningBase));
         }
     }
     if ($operation == "create"){

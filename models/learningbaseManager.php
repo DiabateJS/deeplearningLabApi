@@ -59,7 +59,7 @@ class LearningBaseManager
         return $item;
     }
 
-    public function updateLearningBaseItem($idNetwork, $idItem, $newItem)
+    public function updateLearningBaseItem($newItem)
     {
         $resultat = Helper::createResponseObject();
         $sql = Constants::$SQL_UPDATE_NETWORK_LEARNING_BASE_ITEM;
@@ -91,12 +91,11 @@ class LearningBaseManager
         return $resultat;
     }
 
-    public function deleteNetworkLearningBaseItem($idNetwork, $idItem){
+    public function deleteNetworkLearningBaseItem($idItem){
         $resultat = Helper::createResponseObject();
         $sql = Constants::$SQL_DELETE_NETWORK_LEARNING_BASE_ITEM;
         $bdMan = new BdManager();
         $dicoParam = array(
-            "idNetwork" => $idNetwork,
             "idItem" => $idItem
         );
         $bdMan->executePreparedQuery($sql, $dicoParam);
