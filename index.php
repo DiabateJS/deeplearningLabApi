@@ -3,13 +3,15 @@
   include_once('models/networkManager.php');
   include_once('models/learningConfigManager.php');
   include_once('models/learningbaseManager.php');
+  include_once('models/trainingManager.php');
   header('Access-Control-Allow-Origin: *');
   header('Access-Control-Allow-Headers: *');
   header('Content-Type: application/json');
 
   $operation = $_GET["operation"] ?? "";
   $type = $_GET["type"] ?? "";
-  if ($operation == "" || $type == ""){
+
+  if ($operation == ""){
       header('Location: http://localhost:85/deeplearninglab_api/aide.html');
       exit();
   }
@@ -19,6 +21,7 @@
   $networkManager = new NetworkManager();
   $learningConfigManager = new LearningConfigManager();
   $learningBaseManager = new LearningBaseManager();
+  $trainingManager = new TrainingManager();
 
   if ($operation == "enum"){
       if ($type == "networks"){
@@ -109,6 +112,11 @@
             $id = $_GET["id"] ?? "";
             echo json_encode($learningBaseManager->deleteNetworkLearningBaseItem($id));
         }
+    }
+    if ($operation == "train_network"){
+        $idNetwork = $data->idNetwork ?? "";
+        $input = $data->input ?? "";
+        echo json_encode($trainingManager->trainNetwork($idNetwork, $input));
     }
 
 
