@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manuel api deeplearning</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+        <th>Description</th>
+        <th>Url</th>
+        <th>Method</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="3"><b>Gestion des reseaux</b></td>
+        </tr>
+        <tr>
+            <td>Tous les Reseaux</td>
+            <td>/deeplearninglab_api/index.php?operation=enum&type=networks</td>
+            <td>GET</td>
+        </tr>
+        <tr>
+            <td>Créer un reseau</td>
+            <td>/deeplearninglab_api/index.php?operation=create&type=network</td>
+            <td>POST</td>
+        </tr>
+        <tr>
+            <td>Selectionner un reseau</td>
+            <td>/deeplearninglab_api/index.php?operation=enum&type=network&idNetwork=1</td>
+            <td>GET</td>
+        </tr>
+        <tr>
+            <td>Modifier un reseau</td>
+            <td>/deeplearninglab_api/index.php?operation=update&type=network</td>
+            <td>POST</td>
+        </tr>
+        <tr>
+            <td>Supprimer un reseau</td>
+            <td>/deeplearninglab_api/index.php?operation=delete&type=network&id=2</td>
+            <td>GET</td>
+        </tr>
+        <tr>
+            <td colspan="3"><b>Gestion des config reseau</b></td>
+        </tr>
+        <tr>
+            <td>Selectionner les configs reseau</td>
+            <td>/deeplearninglab_api/index.php?operation=enum&type=learning_config</td>
+            <td>GET</td>
+        </tr>
+        <tr>
+            <td>Modifier les config reseau</td>
+            <td>/deeplearninglab_api/index.php?operation=update&type=learning_config</td>
+            <td>POST</td>
+        </tr>
+        <tr>
+            <td colspan="3"><b>Gestion des items de base d'apprentissage</b></td>
+        </tr>
+        <tr>
+            <td>Tous les item d'apprentissage d'un reseau</td>
+            <td>/deeplearninglab_api/index.php?operation=enum&type=learning_base_items&idNetwork=1</td>
+            <td>GET</td>
+        </tr>
+        <tr>
+            <td>Selectionner un item de la base d'apprentissage d'un reseau</td>
+            <td>/deeplearninglab_api/index.php?operation=enum&type=learning_base_item&idNetwork=1&id=1</td>
+            <td>GET</td>
+        </tr>
+        <tr>
+            <td>Créer item d'apprentissage d'un reseau de neurone</td>
+            <td>/deeplearninglab_api/index.php?operation=create&type=learning_base</td>
+            <td>POST</td>
+        </tr>
+        <tr>
+            <td>Modifier un item d'apprentissage d'un reseau de neurone</td>
+            <td>/deeplearninglab_api/index.php?operation=update&type=learning_base</td>
+            <td>POST</td>
+        </tr>
+        <tr>
+            <td>Supprimer un itme d'apprentissage</td>
+            <td>/deeplearninglab_api/index.php?operation=delete&type=learning_base&id=1</td>
+            <td>GET</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -9,6 +9,11 @@
 
   $operation = $_GET["operation"] ?? "";
   $type = $_GET["type"] ?? "";
+  if ($operation == "" || $type == ""){
+      header('Location: http://localhost:85/deeplearninglab_api/aide.html');
+      exit();
+  }
+
   $data = json_decode(file_get_contents("php://input"));
 
   $networkManager = new NetworkManager();
@@ -48,7 +53,10 @@
             $tauxApprentissage = $data->tauxApprentissage ?? "";
             $typeReseau = $data->typeReseau ?? "";
             $fonctionTransfert = $data->fonctionTransfert ?? "";
-            $newNetwork = new Network($idNetwork, $label, $typeReseau, $tauxApprentissage, $fonctionTransfert, $neuronsParCouches);
+            $labelsNeuronsEntree = $data->labelsNeuronsEntree ?? "";
+            $labelsNeuronsSortie = $data->labelsNeuronsSortie ?? "";
+            $newNetwork = new Network($idNetwork, $label, $typeReseau, $tauxApprentissage, $fonctionTransfert, $neuronsParCouches,
+                                      $labelsNeuronsEntree, $labelsNeuronsSortie);
             echo json_encode($networkManager->updateNetwork($idNetwork, $newNetwork));
         }
         if ($type == "learning_config"){
@@ -77,11 +85,14 @@
             $tauxApprentissage = $data->tauxApprentissage ?? "";
             $fonctionTransfert = $data->fonctionTransfert ?? "";
             $typeReseau = $data->typeReseau ?? "";
-            $newNetwork = new Network($idNetwork, $label, $typeReseau, $tauxApprentissage, $fonctionTransfert, $neuronsParCouches);
+            $labelsNeuronsEntree = $data->labelsNeuronsEntree ?? "";
+            $labelsNeuronsSortie = $data->labelsNeuronsSortie ?? "";
+            $newNetwork = new Network($idNetwork, $label, $typeReseau, $tauxApprentissage, $fonctionTransfert, $neuronsParCouches,
+                                      $labelsNeuronsEntree, $labelsNeuronsSortie);
             echo json_encode($networkManager->createNetwork($newNetwork));
         }
         if ($type == "learning_base"){
-            $id = $data->input ?? "";
+            $id = $data->id ?? "";
             $input = $data->input ?? "";
             $output = $data->output ?? "";
             $idNetwork = $data->idNetwork ?? "";

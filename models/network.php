@@ -11,25 +11,32 @@ class Network
     public $tauxApprentissage;
     public $fonctionTransfert;
     public $neuronsParCouches;
-
+    public $labelsNeuronsEntree;
+    public $labelsNeuronsSortie;
 
     /**
-     * Project constructor.
+     * Network constructor.
      * @param $id
      * @param $label
      * @param $typeReseau
      * @param $tauxApprentissage
      * @param $fonctionTransfert
      * @param $neuronsParCouches
+     * @param $labelsNeuronsEntree
+     * @param $labelsNeuronsSortie
      */
-    public function __construct($id, $label, $typeReseau, $tauxApprentissage, $fonctionTransfert, $neuronsParCouches){
+    public function __construct($id, $label, $typeReseau, $tauxApprentissage, $fonctionTransfert, $neuronsParCouches, $labelsNeuronsEntree, $labelsNeuronsSortie)
+    {
         $this->id = $id;
         $this->label = $label;
         $this->typeReseau = $typeReseau;
         $this->tauxApprentissage = $tauxApprentissage;
         $this->fonctionTransfert = $fonctionTransfert;
         $this->neuronsParCouches = $neuronsParCouches;
+        $this->labelsNeuronsEntree = $labelsNeuronsEntree;
+        $this->labelsNeuronsSortie = $labelsNeuronsSortie;
     }
+
 
 }
 ?>
